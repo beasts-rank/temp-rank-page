@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" data-bs-theme="dark">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,70 +7,75 @@
     <title>出生榜</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script>
+        let html = document.getElementsByTagName('html')[0]
+        if (!html) {
+            html = document.createElement('html')
+        }
+        
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+        
+        function darkHandler() {
+            if (mediaQuery.matches) {
+                html.setAttribute('data-bs-theme', 'dark')
+                return
+            }
+        
+            html.removeAttribute('data-bs-theme', 'dark')
+        }
+        
+        darkHandler()
+        mediaQuery.addListener(darkHandler)
+    </script>
 </head>
 <body>
-<div class="container rounded border">
-<table id="beasts-table" class="table caption-top table-striped table-sm">
-    <caption>所有出生数据均由用户自行上传, 与开发者, 开发团队, 托管平台, 服务器提供商等均无关.</caption>
-    <thead>
-    <tr>
-        <th scope="col">排名</th>
-        <th scope="col">姓名</th>
-        <th scope="col">程度</th>
-        <th scope="col">备注 / 原因</th>
-    </tr>
-    </thead>
-    <tbody>
-        <!-- 不可抗力删除 -->
-    <!-- <tr>
-        <th scope="row">0</th>
-        <td>童杰</td>
-        <td>+INF</td>
-        <td>污蔑他人霸凌他</td>
-    </tr> -->
-    <tr>
-        <th scope="row">1</th>
-        <td>何国清</td>
-        <td>Infinity</td>
-        <td>T0</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>郭俊程</td>
-        <td>114514</td>
-        <td>玩过原神和带土</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>张旭</td>
-        <td>114514</td>
-        <td>导管</td>
-    </tr>
-    </tbody>
-</table>
+<div class="container rounded border m-2 position-absolute top-0 start-50 translate-middle-x">
+    <table id="beasts-table" class="table caption-top table-striped table-sm">
+        <caption>所有出生数据均由用户自行上传, 与开发者, 开发团队, 托管平台, 服务器提供商等均无关.</caption>
+        <thead>
+        <tr>
+            <th scope="col">排名</th>
+            <th scope="col">姓名</th>
+            <th scope="col">程度</th>
+            <th scope="col">备注 / 原因</th>
+            <th scope="col">投稿来源</th>
+        </tr>
+        </thead>
+        <tbody>
+            <!-- 不可抗力删除 -->
+        <!-- <tr>
+            <th scope="row">0</th>
+            <td>童杰</td>
+            <td>+INF</td>
+            <td>污蔑他人霸凌他</td>
+            <td>系统评价</td>
+        </tr> -->
+        <tr>
+            <th scope="row">1</th>
+            <td>何国清</td>
+            <td>Infinity</td>
+            <td>T0</td>
+            <td>同学匿名</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>郭俊程</td>
+            <td>114514</td>
+            <td>玩过原神和带土</td>
+            <td>同学匿名</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>张旭</td>
+            <td>114514</td>
+            <td>导管</td>
+            <td>同学匿名</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-<script>
-let html = document.getElementsByTagName('html')[0]
-if (!html) {
-    html = document.createElement('html')
-}
-
-const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-function darkHandler() {
-    if (mediaQuery.matches) {
-        html.setAttribute('data-bs-theme', 'dark')
-        return
-    }
-
-    html.removeAttribute('data-bs-theme', 'dark')
-}
-
-darkHandler()
-mediaQuery.addListener(darkHandler)
-</script>
 </body>
 </html>
