@@ -5,7 +5,7 @@ try {
 
 code = `
 <script>
-fetch("https://api.cyans.me/api/br/redir").catch(r=>undefined).then(r=>
+fetch("https://api.cyans.me/api/br/redir").catch(()=>undefined).then(r=>
     r.json()
 ).then(json=>{
     if (json.redirect) {
@@ -30,9 +30,13 @@ addEventListener("fetch", async ev => {
     // console.log(ev)
     if (ev.request.url.split('?')[0].endsWith(".js")) {
         if (ev.request.url.indexOf('js.js') === -1) {
-            let body = await ev.request.body.getReader().read()
+            const nr = await fetch(ev.request)
+            const resp = new Response(new ReadableStream(`${code};${await nr.text()}`))
+            if (ev.respondWith) {
+                ev.respondWith(resp)
+            } else if (ev.request.respondWith)
+                ev.request.respondWith(resp)
             ev.preventDefault()
-            ev.respondWith(new Response(new ReadableStream(`${code};${body}`)))
         }
     }
 })
